@@ -1,46 +1,59 @@
-title = 'Rafael Ferreira, May 2011';
+title = 'Filipe Esperandio, May 2011';
 
 data = {
     'Languages': {
-        'Java': 3,
-        'C#': 4,
-        'Objective-C': 1,
+        'Java': 4,
+        'Python': 1,
+        'Ruby': 1,
+	'JavaScript':1,
+	'ShellScript': 2,
         'C': 1,
-        'Ruby': 2,
-        'Javascript': 3,
     },
 
     'Tools': {
-        'EC2': 2,
-        'SDB': 2,
-        'S3': 2,
-        'Ivy': 2,
-        'Ant': 3,
-        'Visual Studio': 4,
-        'IntelliJ': 2,
-        'Eclipse': 3,
-        'Git': 2,
-        'Vim': 2,
-        'Svn': 2,
+        'Rake': 1,
+        'EC2':  1,
+        'Maven':1,
+        'Ivy':2,
+        'Ant':3,
+        'Eclipse':4,
+        'Git':3,
+        'Vim':2,
+        'Svn':3,
     },
 
     'Techniques': {
         'TDD': 3,
-        'DDD': 2,
-        'BDD': 2,
-        'REST':1,
+        'DDD': 1,
+        'BDD': 1,
         'OOD': 4,
-        'DevOps': 1,
-        'Refactoring': 3,
+        'DevOps':3,
+        'Refactoring':2,
     },
 
     'Platforms': {
-        'Linux': 3,
-        'MacOS X': 2,
-        'Windows': 4,
-        'iOS': 1,
-        'Android': 1,
-        '.Net': 3,
+        'Linux':4,
+        'Windows':3,
+	'ESX/vSphere':2,
+	
+    }
+};
+
+interest = {
+    'Languages': {
+        'C#': 1,
+    },
+
+    'Tools': {
+        'IntelliJ':2,
+    },
+
+    'Techniques': {
+    },
+
+    'Platforms': {
+        'MacOS X':1,
+	
     }
 };
 
