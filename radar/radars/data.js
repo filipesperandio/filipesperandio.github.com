@@ -3,27 +3,27 @@ title = 'Filipe Esperandio, May 2011';
 data = {
     'Languages': {
         'Java': 4,
-	'ShellScript': 2,
-        'Python': 1,
-        'Ruby': 1,
 	'JavaScript':1,
+	'ShellScript': 2,
+        'Ruby': 1,
+        'Python': 1,
         'C': 1,
     },
 
     'Tools': {
-        'Eclipse':4,
         'Ant':3,
+        'Eclipse':4,
         'Git':3,
-        'Svn':3,
 	'Oracle':2,
+        'Svn':3,
 	'Spring':2,
+        'EC2':  1,
 	'Axis2':2,
-	'iBatis':2,
 	'Hibernate':2,
 	'Mokito':3,
 	'Jmock':3,
-        'EC2':  1,
         'Maven':1,
+	'iBatis':2,
         'Ivy':2,
         'Vim':2,
 	'SoapUI':2,
@@ -31,17 +31,17 @@ data = {
     },
 
     'Techniques': {
-        'TDD': 3,
         'DDD': 1,
+        'TDD': 3,
         'BDD': 1,
         'OOD': 4,
-        'DevOps':3,
         'Refactoring':2,
+        'DevOps':3,
     },
 
     'Platforms': {
         'Linux':4,
-        'Windows':3,
+        'Windows':4,
 	'ESX/vSphere':2,
 	'Android':1,
     }
