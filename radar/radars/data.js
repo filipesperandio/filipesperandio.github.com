@@ -27,6 +27,7 @@ data = {
         'Ivy':2,
         'Vim':2,
 	'SoapUI':2,
+	'GAE':2,
     },
 
     'Techniques': {
