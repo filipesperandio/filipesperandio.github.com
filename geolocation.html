@@ -1,7 +1,9 @@
 <html>
   <head>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
 
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <script type="text/javascript" src="http://zeptojs.com/zepto.min.js"></script>
+    
     <script>
 
       var map;
@@ -53,9 +55,7 @@
         {
           alert("Geocoder failed due to: " + status);
         }
-        alert(city);
-        var h1 = document.getElementsByTagName('h1');
-        console.log(h1);
+        $('h1').text(city);
       });
     }
 //      google.maps.event.addDomListener(window, 'load', initialize);
