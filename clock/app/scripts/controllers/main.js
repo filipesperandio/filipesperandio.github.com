@@ -9,16 +9,15 @@ clockApp.controller('MainCtrl', function($scope) {
 
 
   $scope.timezone = function(zone) {
-    if(time) {
-      var hour = time.getUTCHours() + zone;
-      var date = new Date();
-      date.setHours(hour);
-      date.setMinutes(time.getMinutes());
-      return date.toLocaleTimeString();
-    } else {
-      return null;
-    }
+    var t = time ? time : new Date();
+    var utc = t.getUTCHours();
+    var hour = utc + zone;
+    var date = new Date();
+    date.setHours(hour);
+    date.setMinutes(t.getMinutes());
+    return date.toString("hh:mm:ss tt");
   };
 
   updateTime();
+  setInterval($scope.$apply, 500);
 });
