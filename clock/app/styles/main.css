@@ -2,3 +2,12 @@
 h2 {
   line-height: 50%;
 }
+
+td.text-to-right {
+  text-align: right;
+}
+
+.btn-large {
+  font-weight: bold;
+  font-family: sans-serif;
+}
