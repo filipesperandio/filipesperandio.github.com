@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-US" class="csstransforms csstransforms3d csstransitions" >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+
+<meta name="robots" content="noindex,nofollow">
+
+<title>Postline Demo</title>
+<link rel="canonical" href="saved_resource.html">
+
+<link rel="stylesheet" id="theme-style-css" href="style.css" type="text/css" media="all">
+<link rel="stylesheet" id="themify-media-queries-css" href="media-queries.css" type="text/css" media="all">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.form.min.js"></script>
+<script type="text/javascript" src="jquery.inview.js"></script>
+<script type="text/javascript" src="data.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+<script>
+var module = angular.module('module', []);
+
+var altclass = function() {
+  return function(scope, element, att) {
+    var fixposition = function() {
+      var el = element[0];
+      var j = $("#"+el.id);
+      if(j.position().left > 400) {
+        var c = el.id == "1" ? "alt second" : "alt";
+        j.addClass(c);
+      } else {
+        j.removeClass("alt");
+      }
+    };
+    setTimeout(fixposition);
+    setTimeout(fixposition, 500);
+  }
+};
+
+module.directive("altclass", altclass);
+
+var timelineController = function($scope) {
+  var formatDate = function(d1, d2) {
+    var year = d1[0];
+    var month = d1[1];
+    var day = d1[2];
+    var hour = d1[3] + ":" + d1[4];
+    var hour_end = d2[3] + ":" + d2[4];
+
+    return day + "/" + month + "/" + year + " " + hour + " - " + hour_end;
+  };
+  $scope.timeline = timeline.timeline;
+  $scope.altClass = function(i){
+    console.log(2);
+  };
+  $scope.dateRange = function(i) {
+    var startDate = i.startDate.split(',');
+    var endDate = i.endDate.split(',');
+    return formatDate(startDate, endDate);
+  };
+}
+
+module.controller("timelineController", timelineController);
+
+</script>
+
+<!-- media-queries.js -->
+<!--[if lt IE 9]>
+    <script src="http://themify.me/demo/themes/postline/wp-content/themes/postline/js/respond.js"></script>
+  <![endif]-->
+
+<!-- html5.js -->
+<!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+<meta name="viewport" content="width=100%, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+
+<!--[if lt IE 9]>
+  <script src="http://s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.5-min.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script> 
+  <![endif]-->
+
+<style type="text/css"></style>
+</head>
+
+<body ng-app="module" class="home blog skin-default webkit sidebar-none timeline">
+
+<div id="pagewrap">
+  <div id="body" class="clearfix"> 
+
+    <div id="layout" class="pagewidth clearfix">
+
+      <div id="content" class="clearfix">
+
+        <div class="loops-timeline infinite-scrolling">
+
+
+          <!-- Right nav menu -->
+          <div class="timeline-nav-wrap" style="z-index: 1000; width: 92px; position: fixed; top: 100px; left: 1035px;">
+            <ul class="timeline-nav">
+              <li>
+              <a class="timeline-nav-year" href="">2012</a>
+              <ul class="timeline-nav-months" style="display: none;">
+
+                <li>
+                <a class="jump-month" data-jump="jump-2012-8" data-year="2012" data-month="8" href="#">August</a>
+                </li>
+
+              </ul>
+              </li>
+
+              <li>
+              <a class="timeline-nav-year" href="">2011</a>
+              <ul class="timeline-nav-months" style="display: none;">
+
+                <li>
+                <a class="jump-month" data-jump="jump-2011-8" data-year="2011" data-month="8" href="">
+                  August				</a>
+                </li>
+
+                <li>
+                <a class="jump-month" data-jump="jump-2011-7" data-year="2011" data-month="7" href="">
+                  July				</a>
+                </li>
+
+              </ul>
+              </li>
+
+              <li>
+              <a class="timeline-nav-year" href="">2010</a>
+              <ul class="timeline-nav-months" style="display: none;">
+
+                <li>
+                <a class="jump-month" data-jump="jump-2010-8" data-year="2010" data-month="8" href="">
+                  August				</a>
+                </li>
+
+                <li>
+                <a class="jump-month" data-jump="jump-2010-7" data-year="2010" data-month="7" href="">
+                  July				</a>
+                </li>
+
+              </ul>
+              </li>
+
+            </ul>
+
+          </div>
+
+
+          <div class="timeline-wrap"
+                  ng-controller="timelineController">
+            <div class="timeline-bar"></div>
+            <div class="timeline-start-dot"></div>
+            <div class="timeline-content">
+              <div id="timeline-set-2012-8" class="timeline-set-month expanded">
+                <h3 id="set-2012-8" class="timeline-month">
+                  <a name="jump-2012-8" id="jump-2012-8" class="timeline-jump"></a><span>{{timeline.headline}}</span>
+                </h3>
+                <div id="" class="set-month isotope" >
+
+                  <article id="{{$index}}" class=" post type-post status-publish format-video hentry category-video post clearfix  isotope-item"
+                          altclass
+                         ng-repeat="item in timeline.date" >
+
+                    <div class="post-inner clearfix">
+
+                      <!-- Title, post icon, post date -->
+                      <span class="post-icon"></span>
+                      <time class="post-date" pubdate=""> <span>{{dateRange(item)}}</span> </time>
+
+                      <h1 class="post-title">{{item.headline}}</h1>
+                      <!-- / Title, post icon, post date -->
+
+
+
+                      <img src="map.jpg" width="500" placeholder="$MAP"></img>
+
+                      <div class="post-content">
+                        <p ng-bind-html-unsafe="item.text"></p>
+
+
+                        <p class="post-meta">
+                        <span class="post-author"><a href="" title="" rel="">$TAG1</a> <em>⋅</em></span>
+                        <span class="post-category"><a href="" title="" rel="">$TAG2</a> <em>⋅</em></span>
+                        <span class="post-comment"> <a href="" title="">$TAG3</a>	</span>
+                        </p>
+
+
+
+                      </div>
+                      <!-- /.post-content -->
+                      <div class="post-dot" style="display: block;"></div>
+                      <div class="post-arrow" style="display: block;"></div>
+                    </div>
+                    <!-- /.post-inner -->
+
+                  </article>
+
+
+
+
+                </div>
+              </div>
+
+
+            </div>
+            <!-- /timeline-content -->
+          </div>
+          <!-- /timeline-wrap -->
+
+        </div>
+        <!-- /loops-wrapper -->
+
+
+      </div>
+      <!-- /#content -->
+
+
+    </div>
+    <!-- /#layout -->
+
+
+  </div>
+  <!-- /body -->
+
+
+</div>
+<!-- /#pagewrap -->
+
+
+<!-- wp_footer -->
+
+
+
+
+</body>
+</html>
