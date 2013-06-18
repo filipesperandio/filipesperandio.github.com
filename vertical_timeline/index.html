@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-US" class="csstransforms csstransforms3d csstransitions" >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+
+<meta name="robots" content="noindex,nofollow">
+
+<title>Roteiro de Viagem</title>
+<link rel="canonical" href="saved_resource.html">
+
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+<link rel="stylesheet" id="theme-style-css" href="style.css" type="text/css" media="all">
+<link rel="stylesheet" id="themify-media-queries-css" href="media-queries.css" type="text/css" media="all">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.form.min.js"></script>
+<script type="text/javascript" src="jquery.inview.js"></script>
+<script type="text/javascript" src="data.js"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+<script>
+var module = angular.module('module', []);
+
+var altclass = function() {
+  return function(scope, element, att) {
+    var fixposition = function() {
+      var el = element[0];
+      var j = $("#"+el.id);
+      if(j.position().left > 400) {
+        var c = el.id == "1" ? "alt second" : "alt";
+        j.addClass(c);
+      } else {
+        j.removeClass("alt");
+      }
+    };
+    setTimeout(fixposition);
+    setTimeout(fixposition, 500);
+  }
+};
+var dayMap = {"1":{},"2":{}};
+var firstInADay = function(item, mapScope) {
+  var day = item.startDate.split(',')[2];
+  if(dayMap[mapScope][day] > 0) {
+    dayMap[mapScope][day]++;
+    return false;
+  }
+  dayMap[mapScope][day] = 1;
+  return true;
+};
+var showday = function() {
+  return function(scope, element, att) {
+    var shouldShow = firstInADay(scope.item, att.showday);
+    if(!shouldShow){
+      element.addClass('hidden');
+    }
+  }
+};
+
+
+module.directive("altclass", altclass);
+module.directive("showday", showday);
+
+
+var timelineController = function($scope) {
+  var formatDate = function(d1, d2) {
+    var year = d1[0];
+    var month = d1[1];
+    var day = d1[2];
+    var hour = d1[3] + ":" + d1[4];
+    var hour_end = d2[3] + ":" + d2[4];
+
+    return hour + " - " + hour_end;
+  };
+  $scope.timeline = timeline.timeline;
+  $scope.altClass = function(i){
+    console.log(2);
+  };
+  $scope.displayDateTime = function(i) {
+    var startDate = i.startDate.split(',');
+    var endDate = i.endDate.split(',');
+    return formatDate(startDate, endDate);
+  };
+  $scope.getDay = function(date) {
+    return date.split(',')[2];
+  };
+  $scope.descText = function(text) {
+    var cut_tag = '<br />';
+    var cut =  text.substring(text.lastIndexOf(cut_tag)+cut_tag.length) ;
+    return cut.replace(/<i>/g, "" );
+  };
+  $scope.cutThumbText = function(text) {
+    var cut_tag = '<br />';
+    var cut =  text.substring(0, text.lastIndexOf(cut_tag)+cut_tag.length) ;
+    return cut;
+  };
+}
+
+module.controller("timelineController", timelineController);
+
+</script>
+
+<!-- media-queries.js -->
+<!--[if lt IE 9]>
+    <script src="http://themify.me/demo/themes/postline/wp-content/themes/postline/js/respond.js"></script>
+  <![endif]-->
+
+<!-- html5.js -->
+<!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+<meta name="viewport" content="width=100%, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+
+<!--[if lt IE 9]>
+  <script src="http://s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.5-min.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/selectivizr/1.0.2/selectivizr-min.js"></script> 
+  <![endif]-->
+
+<style type="text/css"></style>
+</head>
+
+<body ng-app="module" class="home blog skin-default webkit sidebar-none timeline">
+
+<div id="pagewrap" ng-controller="timelineController">
+  <div id="body" class="clearfix"> 
+
+    <div id="layout" class="pagewidth clearfix">
+
+      <div id="content" class="clearfix">
+
+        <div class="loops-timeline infinite-scrolling">
+
+
+          <!-- Right nav menu -->
+          <div class="timeline-nav-wrap" style="z-index: 1000; width: 92px; position: fixed; top: 100px; left: 1035px;">
+            <ul class="timeline-nav">
+
+              <li ng-repeat="item in timeline.date" showday="1">
+              <a class="timeline-nav-year" href="#show-item-{{$index}}" >Dia {{getDay(item.startDate)}}</a>
+              </li>
+
+            </ul>
+
+          </div>
+
+
+          <div class="timeline-wrap" >
+            <div class="timeline-bar"></div>
+            <div class="timeline-start-dot"></div>
+            <div class="timeline-content">
+              <div id="timeline-set-2012-8" class="timeline-set-month expanded">
+                <h3 id="set-2012-8" class="timeline-month">
+                  <a name="jump-2012-8" id="jump-2012-8" class="timeline-jump"></a><span>{{timeline.headline}}</span>
+                </h3>
+                <div id="" class="set-month " >
+
+                  <div ng-repeat="item in timeline.date" >
+                    <h3 id="show-item-{{$index}}" class="timeline-month" showday="2" >
+                      <a name="" id="" class="timeline-jump"></a><span>Dia {{getDay(item.startDate)}}</span>
+                    </h3>
+
+                    <div class="table">
+                    <div class="table-row">
+                      <article id="{{$index}}" class="table-cell format-gallery ">
+
+                        <div class="post-inner post-border clearfix">
+
+                          <span class="post-icon"></span>
+                          <h1 class="post-title">{{displayDateTime(item)}} | {{item.headline}} </h1>
+
+                          <div class="post-content">
+
+                            <div>
+                              <ul class="thumbnails float-left span3">
+                                <li>
+                                <div class="thumbnail">
+                                  <img src="http://my.jou.ufl.edu/students/files/2013/04/WashingtonDC.jpg" alt="">
+                                </div>
+                                </li>
+                              </ul>
+                            </div>
+
+                            <div class="desc">
+                              <p ng-bind-html-unsafe="cutThumbText(item.text)"></p>
+                              <div ng-bind-html-unsafe="descText(item.text)"></div>
+                            </div>
+
+                            <p class="post-meta">
+                            <span class="post-author">  <a href="" title="" rel="">$TAG1</a></span>
+                            <span class="post-category"><a href="" title="" rel="">$TAG2</a></span>
+                            <span class="post-comment"> <a href="" title="">       $TAG3</a></span>
+                            </p>
+                          </div>
+
+                        </div>
+                      </article>
+                      <div id="img{{$index}}" class="table-cell map post-border">
+                        &nbsp;
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+
+
+
+
+                </div>
+              </div>
+
+
+            </div>
+            <!-- /timeline-content -->
+          </div>
+          <!-- /timeline-wrap -->
+
+        </div>
+        <!-- /loops-wrapper -->
+
+
+      </div>
+      <!-- /#content -->
+
+
+    </div>
+    <!-- /#layout -->
+
+
+  </div>
+  <!-- /body -->
+
+
+</div>
+<!-- /#pagewrap -->
+
+
+<!-- wp_footer -->
+
+
+
+
+</body>
+</html>
