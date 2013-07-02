@@ -56,9 +56,17 @@ var showday = function() {
   }
 };
 
+var nnn = function() {
+  return function(scope, element, att) {
+    console.log("scope", scope);
+    console.log("element", element);
+    console.log("att", att);
+  }
+};
 
-module.directive("altclass", altclass);
+module.directive("nnn", nnn);
 module.directive("showday", showday);
+module.directive("altclass", altclass);
 
 
 var timelineController = function($scope) {
@@ -169,16 +177,13 @@ module.controller("timelineController", timelineController);
                           <h1 class="post-title">{{displayDateTime(item)}} | {{item.headline}} </h1>
 
                           <div class="post-content">
-
-                            <div>
-                              <ul class="thumbnails float-left span3">
-                                <li>
-                                <div class="thumbnail">
-                                  <img src="http://my.jou.ufl.edu/students/files/2013/04/WashingtonDC.jpg" alt="">
-                                </div>
-                                </li>
-                              </ul>
-                            </div>
+                            <ul class="thumbnails pull-left">
+                              <li class="span3">
+                              <div class="thumbnail">
+                                <img src="http://my.jou.ufl.edu/students/files/2013/04/WashingtonDC.jpg" alt="">
+                              </div>
+                              </li>
+                            </ul>
 
                             <div class="desc">
                               <p ng-bind-html-unsafe="cutThumbText(item.text)"></p>
@@ -224,6 +229,7 @@ module.controller("timelineController", timelineController);
     </div>
     <!-- /#layout -->
 
+<div nnn="fulano">AAA</div>
 
   </div>
   <!-- /body -->
