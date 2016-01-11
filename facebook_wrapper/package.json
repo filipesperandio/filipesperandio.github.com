@@ -1,0 +1,12 @@
+{
+  "name": "facebook_wrapper",
+  "version": "0.1.0",
+  "description": "An angular service which wraps up Facebook SDK",
+  "main": "grunt.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD"
+}
