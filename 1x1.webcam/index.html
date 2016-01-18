@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <script>
+
+window.onload = function() {
+  var hash = window.location.hash;
+  var room = hash.substr(1, hash.length);
+  if(!room) return;
+  loadRoom(room);
+}
+
+function clearInput () {
+  var div = document.querySelector('div');
+  div.remove();
+}
+
+function loadRoom (room) {
+  clearInput();
+
+  var iframe = document.createElement('iframe');
+  iframe.src = "https://appear.in/1x1-webcam-" + room;
+  iframe.width = "100%";
+  iframe.height = "100%";
+  document.body.appendChild(iframe);
+}
+
+function submit () {
+  var room = document.querySelector('#room-name').value;
+  window.location = window.location + "#" + room;
+  loadRoom(room);
+}
+
+    </script>
+
+    <style>
+
+    ::-webkit-input-placeholder {
+      color: #37A;
+    }
+    :-moz-placeholder {
+      color: #37A;
+    }
+    ::-moz-placeholder {
+      color: #37A;
+    }
+    :-ms-input-placeholder {
+      color: #37A;
+    }
+
+    .container {
+      display: flex;
+      flex-flow: column;
+      justify-content: center space-around;
+      align-items: center;
+      align-content: center;
+        margin-top: 8em;
+    }
+
+    .common {
+      margin: 8px;
+      padding: 8px;
+    }
+
+    .big {
+      width: 50%;
+      font-size: 36px;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .medium {
+      min-width: 15%;
+      font-size: 24px;
+      padding: 15px;
+    }
+
+    input {
+      -moz-border-radius: 15px;
+      -webkit-border-radius: 15px;
+      border-radius: 15px; 
+      border: solid 1px;
+      border-color: #3AC;
+      color: #37A;
+    }
+
+    button {
+      -moz-border-radius: 15px;
+      -webkit-border-radius: 15px;
+      border-radius: 15px; 
+      border: 0 none;
+      color: #FFFFFF;
+      font-family: Arial,sans-serif;
+      font-weight: bold;
+      line-height: 20px;
+      margin-bottom: 0;
+      margin-top: 10px;
+      text-align: center;
+      background-color: #37A;
+    }
+    </style>
+
+  </head>
+  <body>
+
+    <div class="container">
+      <input id="room-name" class="common big" type="text" placeholder="room-name" />
+      <button class="common medium" onclick="submit()">CREATE</button>
+    </div>
+
+  </body>
+</html>
